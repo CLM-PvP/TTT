@@ -1,0 +1,3 @@
+name: TTT
+version: '${project.version}'
+main: de.clmpvp.ttt.main.Main
