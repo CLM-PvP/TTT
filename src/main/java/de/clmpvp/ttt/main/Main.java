@@ -1,8 +1,9 @@
 package de.clmpvp.ttt.main;
 
+import de.clmpvp.ttt.Commands.SetupCommand;
 import de.clmpvp.ttt.Gamestates.GameStateManager;
 import de.clmpvp.ttt.Gamestates.Gamestate;
-import de.clmpvp.ttt.Listeners.PlayerConnectionListener;
+import de.clmpvp.ttt.Listeners.PlayerLobbyConnectionListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -14,7 +15,7 @@ public final class Main extends JavaPlugin {
 
     public static final String prefix = "§7[§cTTT§7] ";
     public static final String noperms = "§7[§cTTT§7] §cDazu hast du keine Rechte ";
-    public static final String use = "§7[§cTTT§7] §eBitte benutze /";
+    public static final String use = "§7[§cTTT§7] §eBitte benutze §6/";
 
     private GameStateManager gameStateManager;
     private ArrayList<Player> players;
@@ -30,7 +31,10 @@ public final class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("§cPlugin gestartet");
     }
     private void init(PluginManager pm) {
-        pm.registerEvents(new PlayerConnectionListener(this), this);
+        pm.registerEvents(new PlayerLobbyConnectionListener(this), this);
+
+
+        getCommand("setup").setExecutor(new SetupCommand(this));
 
     }
 
